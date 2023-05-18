@@ -2,10 +2,10 @@ import { Heading, Imagen, Form } from './cotizador/components';
 import { Contenedor } from './cotizador/layout/Contenedor';
 
 export const App = () => {
+
+
   return (
-
     <>
-
       <Contenedor>
 
         <Imagen/>
@@ -15,8 +15,6 @@ export const App = () => {
           <Form/>
         </div>
       </Contenedor>
-
-
     </>
 
   )

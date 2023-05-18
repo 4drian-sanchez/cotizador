@@ -1,3 +1,3 @@
 export * from './Heading';
 export * from './Imagen';
-export * from './Form';
+export * from './form/Form';

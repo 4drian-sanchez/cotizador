@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
+import { getCryptos } from '../../helpers/getCryptos';
+import { Selects } from './Selects';
 
 const InputSubmit = styled.input`
     background-color: #9497FF;
@@ -15,11 +18,30 @@ const InputSubmit = styled.input`
       background-color: #6f74ff;
       cursor: pointer;
     }
-`
+`;
 
 export const Form = () => {
-  return (
+  
+  const [cryptoState, setCryptoState] = useState([]);
+  
+    
+    
+    
+  //Ppeticion https de la API
+  const data = async () => {
+    const cryptos = await getCryptos();
+    setCryptoState( cryptos );
+  }
+  
+  useEffect(() => {
+    data();
+  }, [])
+   
+ return (
     <form>
+    <Selects
+      cryptoState={ cryptoState }
+    />
 
     <InputSubmit 
       type='submit'
