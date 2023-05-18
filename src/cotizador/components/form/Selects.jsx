@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useEffect } from 'react';
 import { monedas } from '../../data/data'
 import { useForm } from '../../hooks/useForm';
 
@@ -19,19 +20,22 @@ const SelectComponent = styled.select`
 
 const Label = styled.label`
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'lato', sans-serif;
     margin-bottom: 1.5rem;
     display: block;
     text-align: center;
 `;
 
-export const Selects = ( { cryptoState } ) => {
+export const Selects = ({ cryptoState, setIsValid }) => {
 
     const { moneda, criptomoneda, hundleChange, formState } = useForm({ moneda: '', criptomoneda: '' });
-    
-    console.log(Object.values(formState).includes(''));
-    
+
+    useEffect(() => {
+        setIsValid(Object.values(formState).includes(''));
+    }, [formState]);
+
+
     return (
         <>
             <Label htmlFor="moneda">Selecione tu moneda</Label>

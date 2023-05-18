@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
 import { getCryptos } from '../../helpers/getCryptos';
 import { Selects } from './Selects';
+import {Error} from '../Error';
 
 const InputSubmit = styled.input`
     background-color: #9497FF;
@@ -23,10 +24,23 @@ const InputSubmit = styled.input`
 export const Form = () => {
   
   const [cryptoState, setCryptoState] = useState([]);
+  const [isValid, setIsValid] = useState(false);
+  const [errorState, setErrorState] = useState(false);
+
+  //Agregando validacion
+  const hundleSubmit = e => {
+    e.preventDefault();
+
+    if(isValid) {
+      setErrorState(true)
+      return
+    };
+    setErrorState(false)
+
+  }
+
+
   
-    
-    
-    
   //Ppeticion https de la API
   const data = async () => {
     const cryptos = await getCryptos();
@@ -38,9 +52,16 @@ export const Form = () => {
   }, [])
    
  return (
-    <form>
+    <form
+      onSubmit={ hundleSubmit }
+    >
+
+    {/* Error */}
+
+    { errorState && <Error>Todos los campos son oobligatorios</Error> }
     <Selects
       cryptoState={ cryptoState }
+      setIsValid={ setIsValid }
     />
 
     <InputSubmit 
