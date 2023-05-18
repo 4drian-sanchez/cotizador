@@ -27,12 +27,12 @@ const Label = styled.label`
     text-align: center;
 `;
 
-export const Selects = ({ cryptoState, setIsValid }) => {
+export const Selects = ({ cryptoState, setMonedas }) => {
 
     const { moneda, criptomoneda, hundleChange, formState } = useForm({ moneda: '', criptomoneda: '' });
 
     useEffect(() => {
-        setIsValid(Object.values(formState).includes(''));
+        setMonedas(formState)
     }, [formState]);
 
 
@@ -48,7 +48,7 @@ export const Selects = ({ cryptoState, setIsValid }) => {
                 <option value="" disabled  >-Selecione-</option>
                 {
                     monedas.map(({ id, nombre }) => (
-                        <option key={id} > {nombre} </option>
+                        <option key={id} value={id}> {nombre} </option>
                     ))
                 }
             </SelectComponent>

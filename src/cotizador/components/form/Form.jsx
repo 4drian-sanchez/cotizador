@@ -21,22 +21,30 @@ const InputSubmit = styled.input`
     }
 `;
 
-export const Form = () => {
+export const Form = ( { setmonedasApp } ) => {
   
   const [cryptoState, setCryptoState] = useState([]);
-  const [isValid, setIsValid] = useState(false);
+  const [monedas, setMonedas] = useState({});
   const [errorState, setErrorState] = useState(false);
 
   //Agregando validacion
   const hundleSubmit = e => {
     e.preventDefault();
 
-    if(isValid) {
+
+    //Validar desde el state de monedas!!
+    if(Object.values(monedas).includes('')) {
       setErrorState(true)
+
+      setTimeout(() => {
+      setErrorState(false)
+      }, 2000);
+
       return
     };
-    setErrorState(false)
 
+    setErrorState(false)
+    setmonedasApp(monedas)
   }
 
 
@@ -61,7 +69,7 @@ export const Form = () => {
     { errorState && <Error>Todos los campos son oobligatorios</Error> }
     <Selects
       cryptoState={ cryptoState }
-      setIsValid={ setIsValid }
+      setMonedas={ setMonedas }
     />
 
     <InputSubmit 
