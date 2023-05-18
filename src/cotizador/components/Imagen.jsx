@@ -11,7 +11,7 @@ const ImagenComponent = styled.img`
 export const Imagen = () => {
   return (
     <ImagenComponent
-        src={ imagenCriptos }
+        src={ `.${imagenCriptos}` }
         alt='Imagen de la aplicacion'
         title='Imagen de la aplicacion'
     />
